@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { useGetProductsQuery } from "../../services/ProductsService";
-// import { CiShoppingCart } from "react-icons/ci";
+
 export default function ProductsList() {
   const { data: products, error, isLoading } = useGetProductsQuery();
+  const navigate = useNavigate();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
@@ -15,7 +17,8 @@ export default function ProductsList() {
         {products?.map((product) => (
           <div
             key={product.id}
-            className="border-2 border-secondary-400 py-5 px-3 rounded-xl text-left flex flex-col items-center gap-y-2"
+            onClick={() => navigate(`/products/${product.id}`)}
+            className="border-2 border-secondary-400 py-5 px-3 rounded-xl text-left flex flex-col items-center gap-y-2 cursor-pointer"
           >
             <div className="w-[208px] h-[200px]">
               <img
@@ -26,9 +29,8 @@ export default function ProductsList() {
             </div>
             <p className="font-medium text-lg self-end">${product.price}</p>
             <p className="font-semibold text-2xl self-end">{product.title}</p>
-            <button className="bg-primary-700 text-secondary-0 rounded-xl bottom-0 mt-auto w-full flex items-center justify-center py-2">
-              Buy
-              {/* <CiShoppingCart className="size-10" /> */}
+            <button className="bg-primary-700 text-secondary-0 rounded-xl bottom-0 mt-auto w-full flex items-center justify-center py-2 font-bold text-lg">
+              Add To Cart
             </button>
           </div>
         ))}

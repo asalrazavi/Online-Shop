@@ -22,4 +22,15 @@ export const productsApi = createApi({
   }),
 });
 
+export const singleProductApi = createApi({
+  reducerPath: "singleProductApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com" }),
+  endpoints: (builder) => ({
+    getSingleProduct: builder.query<Product, number>({
+      query: (id) => `/products/${id}`,
+    }),
+  }),
+});
+
 export const { useGetProductsQuery } = productsApi;
+export const { useGetSingleProductQuery } = singleProductApi;
