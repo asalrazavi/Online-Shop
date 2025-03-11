@@ -4,7 +4,7 @@ import { FaRegUser } from "react-icons/fa";
 
 export default function Header() {
   return (
-    <div className="flex justify-between py-4 px-8 bg-secondary-0 border-b border-secondary-200 top-0">
+    <div className="flex justify-between py-4 px-8 bg-secondary-0 border-b border-secondary-200 top-0 fixed w-full">
       <div className={`flex items-center justify-start gap-x-8`}>
         <HeaderMenu />
       </div>
