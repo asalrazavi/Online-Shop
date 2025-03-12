@@ -1,20 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useGetProductsQuery } from "../../services/ProductsService";
 
 export default function ProductsList() {
   const { data: products, error, isLoading } = useGetProductsQuery();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedCategory = searchParams.get("category") || null;
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
 
   console.log(products);
 
+  const filteredProducts = selectedCategory
+    ? products?.filter((product) => product.category === selectedCategory)
+    : products;
+
   return (
     <div className="px-20 py-14 flex flex-col justify-center items-center gap-y-20 mt-20">
       <h1 className="text-3xl font-bold text-secondary-700">Products</h1>
       <div className="grid grid-cols-5 gap-2">
-        {products?.map((product) => (
+        {filteredProducts?.map((product) => (
           <div
             key={product.id}
             onClick={() => navigate(`/products/${product.id}`)}

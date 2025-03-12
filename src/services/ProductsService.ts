@@ -19,6 +19,13 @@ export const productsApi = createApi({
       transformResponse: (response: { products: Product[] }) =>
         response.products,
     }),
+
+    getCategories: builder.query<string[], void>({
+      query: () => "/products",
+      transformResponse: (response: { products: Product[] }) => {
+        return Array.from(new Set(response.products.map((p) => p.category)));
+      },
+    }),
   }),
 });
 
@@ -32,5 +39,5 @@ export const singleProductApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useGetCategoriesQuery } = productsApi;
 export const { useGetSingleProductQuery } = singleProductApi;

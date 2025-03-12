@@ -16,7 +16,7 @@ export default function ProductDetails() {
   console.log(product);
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center space-y-4">
       <h1 className="text-3xl font-bold">{product.title}</h1>
       <img
         src={product.images[0]}
@@ -25,6 +25,9 @@ export default function ProductDetails() {
       />
       <p className="text-lg font-medium">${product.price}</p>
       <p className="text-lg font-medium">{product.category}</p>
+      <p className="text-sm font-light w-[40%] text-center">
+        {product.description}
+      </p>
     </div>
   );
 }
