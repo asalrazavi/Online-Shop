@@ -10,7 +10,6 @@ export default function ProductsList() {
   const selectedCategory = searchParams.get("category") || null;
   const dispatch = useDispatch();
 
-  if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
 
   const handleAddToCart = (
@@ -29,6 +28,7 @@ export default function ProductsList() {
     <div className="px-6 sm:px-10 md:px-16 py-14 flex flex-col justify-center items-center gap-y-12 mt-12">
       <h1 className="text-4xl font-extrabold text-gray-800">محصولات</h1>
       <ProductCard
+        isLoading={isLoading}
         filteredProducts={filteredProducts}
         handleAddToCart={handleAddToCart}
       />
