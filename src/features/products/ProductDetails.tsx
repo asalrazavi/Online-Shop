@@ -13,6 +13,7 @@ export default function ProductDetails() {
   } = useGetSingleProductQuery(Number(id));
 
   if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading product</p>;
   if (!product) return <p>No product found</p>;
 
   console.log(product);

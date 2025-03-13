@@ -1,16 +1,25 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetProductsQuery } from "../../services/ProductsService";
+import { Product, useGetProductsQuery } from "../../services/ProductsService";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../services/store";
 
 export default function ProductsList() {
   const { data: products, error, isLoading } = useGetProductsQuery();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category") || null;
+  const dispatch = useDispatch();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
 
-  console.log(products);
+  const handleAddToCare = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    product: Product
+  ) => {
+    e.stopPropagation();
+    dispatch(addToCart(product));
+  };
 
   const filteredProducts = selectedCategory
     ? products?.filter((product) => product.category === selectedCategory)
@@ -35,8 +44,11 @@ export default function ProductsList() {
             </div>
             <p className="font-medium text-lg self-end">${product.price}</p>
             <p className="font-semibold text-2xl self-end">{product.title}</p>
-            <button className="bg-primary-700 text-secondary-0 rounded-xl bottom-0 mt-auto w-full flex items-center justify-center py-2 font-bold text-lg">
-              Add To Cart
+            <button
+              onClick={(e) => handleAddToCare(e, product)}
+              className="bg-primary-700 text-secondary-0 rounded-xl bottom-0 mt-auto w-full flex items-center justify-center py-2 font-bold text-lg"
+            >
+              افزودن به سبد خرید
             </button>
           </div>
         ))}
