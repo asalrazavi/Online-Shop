@@ -1,11 +1,11 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Product, useGetProductsQuery } from "../../services/ProductsService";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../services/store";
+import ProductCard from "./ProductCard";
 
 export default function ProductsList() {
   const { data: products, error, isLoading } = useGetProductsQuery();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category") || null;
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function ProductsList() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;
 
-  const handleAddToCare = (
+  const handleAddToCart = (
     e: React.MouseEvent<HTMLButtonElement>,
     product: Product
   ) => {
@@ -26,33 +26,12 @@ export default function ProductsList() {
     : products;
 
   return (
-    <div className="px-20 py-14 flex flex-col justify-center items-center gap-y-20 mt-20">
-      <h1 className="text-3xl font-bold text-secondary-700">محصولات</h1>
-      <div className="grid grid-cols-5 gap-2">
-        {filteredProducts?.map((product) => (
-          <div
-            key={product.id}
-            onClick={() => navigate(`/products/${product.id}`)}
-            className="border-2 border-secondary-400 py-5 px-3 rounded-xl text-left flex flex-col items-center gap-y-2 cursor-pointer"
-          >
-            <div className="w-[208px] h-[200px]">
-              <img
-                src={product.images[0]}
-                alt="image"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <p className="font-medium text-lg self-end">${product.price}</p>
-            <p className="font-semibold text-2xl self-end">{product.title}</p>
-            <button
-              onClick={(e) => handleAddToCare(e, product)}
-              className="bg-primary-700 text-secondary-0 rounded-xl bottom-0 mt-auto w-full flex items-center justify-center py-2 font-bold text-lg"
-            >
-              افزودن به سبد خرید
-            </button>
-          </div>
-        ))}
-      </div>
+    <div className="px-6 sm:px-10 md:px-16 py-14 flex flex-col justify-center items-center gap-y-12 mt-12">
+      <h1 className="text-4xl font-extrabold text-gray-800">محصولات</h1>
+      <ProductCard
+        filteredProducts={filteredProducts}
+        handleAddToCart={handleAddToCart}
+      />
     </div>
   );
 }

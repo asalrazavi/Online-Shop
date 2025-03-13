@@ -1,3 +1,10 @@
+import CartContainer from "../features/cart/CartContainer";
+import HomeLayout from "../ui/HomeLayout";
+
 export default function Cart() {
-  return <div>Cart</div>;
+  return (
+    <HomeLayout>
+      <CartContainer />
+    </HomeLayout>
+  );
 }
