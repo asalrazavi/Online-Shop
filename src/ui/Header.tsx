@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import HeaderMenu from "./HeaderMenu";
-import { FaRegUser } from "react-icons/fa";
+import { CiShoppingCart } from "react-icons/ci";
 
 export default function Header() {
   return (
@@ -9,8 +9,8 @@ export default function Header() {
         <HeaderMenu />
       </div>
       <div className={`flex items-center justify-end gap-x-8`}>
-        <Link to="dashboard">
-          <FaRegUser className="w-5 h-5 text-primary-900" />
+        <Link to="/cart">
+          <CiShoppingCart className="size-8 text-primary-900" />
         </Link>
       </div>
     </div>

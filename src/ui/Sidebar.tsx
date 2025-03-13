@@ -21,7 +21,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 border-l border-secondary-200 bg-white shadow-lg top-0 right-0 pt-20 overflow-y-auto row-span-2 row-start-1 h-full">
       <h2 className="text-lg font-semibold text-gray-700 px-4 mb-4 text-center">
-        Categories
+        دسته بندی ها
       </h2>
       <CategoryList
         categories={categories}

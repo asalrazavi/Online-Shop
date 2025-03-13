@@ -18,7 +18,7 @@ export default function ProductsList() {
 
   return (
     <div className="px-20 py-14 flex flex-col justify-center items-center gap-y-20 mt-20">
-      <h1 className="text-3xl font-bold text-secondary-700">Products</h1>
+      <h1 className="text-3xl font-bold text-secondary-700">محصولات</h1>
       <div className="grid grid-cols-5 gap-2">
         {filteredProducts?.map((product) => (
           <div

@@ -9,7 +9,7 @@ function HeaderMenu() {
         </Link>
       </li>
       <li className="flex">
-        <Link to="products">
+        <Link to="/products">
           <p>محصولات</p>
         </Link>
       </li>
