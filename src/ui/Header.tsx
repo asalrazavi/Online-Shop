@@ -10,7 +10,7 @@ export default function Header() {
   const cartItems = useSelector((state: RootState) => state.cart.cart);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,15 +1,14 @@
 import { useSearchParams } from "react-router-dom";
 import { useGetCategoriesQuery } from "../services/ProductsService";
 import CategoryList from "../features/products/CategoryList";
+import SidebarSkeleton from "../skeleton/SidebarSkeleton";
 
 export default function Sidebar() {
   const { data: categories, error, isLoading } = useGetCategoriesQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category") || null;
 
-  console.log("Categories Data:", categories);
-
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SidebarSkeleton />;
   if (error) return <p>Error loading categories</p>;
 
   const handleCategoryChange = (category: string | null) => {
