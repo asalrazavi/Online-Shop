@@ -8,10 +8,10 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="grid grid-cols-[15rem_1fr] grid-rows-[auto_1fr] h-screen">
+    <div className="flex h-screen">
       <Header />
+      <div className="flex-1 flex flex-col pr-64">{children}</div>
       <Sidebar />
-      {children}
     </div>
   );
 }

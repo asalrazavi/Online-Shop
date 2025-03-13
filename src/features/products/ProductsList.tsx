@@ -25,7 +25,7 @@ export default function ProductsList() {
     : products;
 
   return (
-    <div className="px-6 sm:px-10 md:px-16 py-14 flex flex-col justify-center items-center gap-y-12 mt-12">
+    <div className="px-6 sm:px-10 md:px-16 py-14 flex flex-col justify-center items-center gap-y-12 mt-12 w-full">
       <h1 className="text-4xl font-extrabold text-gray-800">محصولات</h1>
       <ProductCard
         isLoading={isLoading}
